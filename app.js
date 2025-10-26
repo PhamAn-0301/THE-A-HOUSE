@@ -1,4 +1,3 @@
-// app.js (hoặc server.js)
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -7,12 +6,17 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const HOST = '0.0.0.0';
 
-// (tuỳ bạn) cấu hình static, view engine...
-// app.engine('handlebars', engine({...}));
-// app.set('view engine', 'handlebars');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-app.get('/', (req, res) => res.send('OK - THE A HOUSE running'));
+// 🔹 phục vụ file tĩnh
+app.use(express.static(__dirname));
+
+// 🔹 route chính trả về trang index.html
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
 
 app.listen(PORT, HOST, () => {
-  console.log(`Server listening on http://${HOST}:${PORT}`);
+  console.log(`✅ Server running at http://${HOST}:${PORT}`);
 });
