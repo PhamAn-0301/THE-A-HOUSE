@@ -1,0 +1,22 @@
+{
+  "name": "the-a-house",
+  "version": "1.0.0",
+  "description": "THE A HOUSE web project",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "engines": {
+    "node": ">=20.x"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
