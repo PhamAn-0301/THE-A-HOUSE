@@ -43,36 +43,49 @@ header {
   justify-content: space-between;
   gap: 20px;
   padding: 10px 0;  /* giảm từ 28px xuống 10px */
-  height: 80px;     /* cố định chiều cao header */
+  height: 70px;     /* cố định chiều cao header */
   position: relative;
 }
 
 /* Logo vẫn to nhưng không đẩy header to theo */
-.logo {
-  width: 210px;     /* logo vẫn lớn */
-  height: 210px;
+.brand{
+  position: relative;
+  display: block;
+  width: 180px;      /* chiều rộng khu vực logo trong header */
+  height: 80px;      /* đúng bằng chiều cao header */
+  overflow: hidden;  /* ⬅️ phần logo tràn sẽ bị cắt */
+}
+
+/* 2) Logo vẫn absolute để canh giữa dọc, nhưng bị cắt bởi .brand */
+.logo{
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%); /* canh giữa dọc */
+  height:180px;               /* có thể lớn hơn khung để nhìn “tràn” */
+  width: auto;
   border: none;
   border-radius: 0;
-  overflow: visible;
   background: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  top: 50%;          /* canh giữa theo chiều dọc */
-  transform: translateY(-50%);
-  transition: transform 0.3s ease;
+  transition: transform .3s ease;
 }
 
-.logo:hover {
+.logo:hover{
   transform: translateY(-50%) scale(1.06);
 }
 
-.logo img {
-  width: 100%;
+.logo img{
   height: 100%;
+  width: auto;
   object-fit: contain;
 }
+
+/* 3) (Tùy chọn) Cắt tràn ở tầng cao hơn nếu cần */
+.nav{ overflow: hidden; }   /* phòng trường hợp phần tử con tràn ra ngoài .nav */
+header{ overflow: hidden; } /* phòng trường hợp đặc biệt với hiệu ứng/filter */
 
 
 
@@ -82,7 +95,21 @@ nav a:hover{border-color:var(--navy)}
 .social{display:flex;gap:12px;font-size:20px}
     .social a{display:inline-flex;width:36px;height:36px;border-radius:50%;background:#fff;box-shadow:var(--shadow);align-items:center;justify-content:center}
     /* Hero */
-    .hero{margin-top:8px}
+      .hero .frame {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .hero .frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+    .hero{margin-top:0px}
     .hero .frame{position:relative;border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
     .about-card{
       position:absolute;left:50%;bottom:-40px;transform:translateX(-50%);
@@ -93,13 +120,36 @@ nav a:hover{border-color:var(--navy)}
     .btn-outline{
       display:inline-block;margin-top:12px;border:1.6px solid rgba(255,255,255,.65);color:#fff;padding:10px 18px;border-radius:999px;font-weight:600
     }
-    .spacer{height:80px}
+    .spacer{height:20px}
     /* Value cards */
-    .values{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:70px}
-    .vcard{border-radius:16px;padding:26px;background:#3B4A57;color:#fff;min-height:110px;display:grid;align-content:center;justify-items:start}
-    .vcard:nth-child(2){background:#2D3650}
-    .vcard:nth-child(3){background:#7A2230}
-    .vtitle{font-weight:800;letter-spacing:1px}
+    .values{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:20px}
+    .vcard {
+    border-radius: 16px;
+    padding: 26px;
+    background: #3B4A57;
+    color: #fff;
+    min-height: 260px; /* 🔹 tăng chiều cao */
+    
+    display: flex;              /* dùng flexbox */
+    flex-direction: column;     /* sắp chữ theo cột */
+    align-items: center;        /* căn giữa ngang */
+    justify-content: center;    /* căn giữa dọc */
+    text-align: center;         /* căn giữa văn bản */
+    
+    font-size: 18px;            /* 🔹 chữ to hơn */
+    line-height: 1.5;
+  }
+
+  .vcard:nth-child(2) { background: #2D3650; }
+  .vcard:nth-child(3) { background: #7A2230; }
+
+  .vtitle {
+    font-weight: 800;
+    letter-spacing: 1px;
+    font-size: 20px;            /* 🔹 to hơn cho tiêu đề */
+    margin-bottom: 10px;
+  }
+
     /* Navy band */
     .band{background:var(--navy);color:#fff;margin:56px 0;border-radius:16px;padding:26px;display:grid;place-items:center}
     .band .mini-logo{font-weight:800;letter-spacing:1px}
@@ -169,8 +219,8 @@ nav a:hover{border-color:var(--navy)}
 
   <!-- Hero -->
   <main id="home" class="hero">
-    <div class="container frame">
-      <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1600&auto=format&fit=crop" alt="Modern apartment with skyline view">
+    <div class=" frame">
+      <img src="img/hinh11.jpg">
       <section id="about" class="about-card" role="region" aria-labelledby="about-title">
         <div class="inner">
           <div class="logo-row">
@@ -201,7 +251,7 @@ nav a:hover{border-color:var(--navy)}
     <!-- Vision -->
     <section class="split" aria-labelledby="vision-title">
       <div class="imgbox">
-        <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=1600&auto=format&fit=crop" alt="Warm living room">
+        <img src="img/vision.jpg" alt="Warm living room">
       </div>
       <article class="panel">
         <div class="hd" id="vision-title">VISION</div>
@@ -223,14 +273,14 @@ nav a:hover{border-color:var(--navy)}
         </div>
       </article>
       <div class="imgbox">
-        <img src="https://images.unsplash.com/photo-1501045661006-fcebe0257c3f?q=80&w=1600&auto=format&fit=crop" alt="Hallway to balcony">
+        <img src="img/hinh2.jpg" alt="Hallway to balcony">
       </div>
     </section>
 
     <!-- Services -->
     <section id="services" class="services" style="margin-top:26px" aria-labelledby="services-title">
       <div class="imgbox">
-        <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=1600&auto=format&fit=crop" alt="Cozy apartment interior">
+        <img src="img/hinh3.jpg" alt="Cozy apartment interior">
       </div>
       <article class="panel">
         <div class="hd" id="services-title">SERVICES</div>
