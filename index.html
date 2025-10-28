@@ -25,18 +25,61 @@
     img{max-width:100%;display:block}
     .container{width:min(1200px,92%);margin-inline:auto}
     /* Header */
-    header{position:sticky;top:0;z-index:40;background:var(--cream);border-bottom:1px solid rgba(0,0,0,.06);backdrop-filter:saturate(140%) blur(4px)}
-    .nav{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px 0}
-    .brand{display:flex;align-items:center;gap:14px;font-weight:800;letter-spacing:.5px}
-    .logo{
-      width:56px;height:56px;border:3px solid var(--navy);border-radius:12px;
-      position:relative;display:grid;place-items:center;color:var(--navy);font-weight:800
-    }
-    .logo::before{content:"A";font-size:30px;line-height:1;margin-top:-2px}
-    nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-weight:600}
-    nav a{opacity:.9;border-bottom:2px solid transparent;padding-bottom:2px}
-    nav a:hover{border-color:var(--navy)}
-    .social{display:flex;gap:12px;font-size:20px}
+    /* Header */
+/* Header */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: var(--cream);
+  border-bottom: 1px solid rgba(0,0,0,.06);
+  backdrop-filter: saturate(140%) blur(4px);
+}
+
+/* Làm header nhỏ gọn hơn */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 10px 0;  /* giảm từ 28px xuống 10px */
+  height: 80px;     /* cố định chiều cao header */
+  position: relative;
+}
+
+/* Logo vẫn to nhưng không đẩy header to theo */
+.logo {
+  width: 210px;     /* logo vẫn lớn */
+  height: 210px;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;          /* canh giữa theo chiều dọc */
+  transform: translateY(-50%);
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: translateY(-50%) scale(1.06);
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+
+
+nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-weight:600}
+nav a{opacity:.9;border-bottom:2px solid transparent;padding-bottom:2px}
+nav a:hover{border-color:var(--navy)}
+.social{display:flex;gap:12px;font-size:20px}
     .social a{display:inline-flex;width:36px;height:36px;border-radius:50%;background:#fff;box-shadow:var(--shadow);align-items:center;justify-content:center}
     /* Hero */
     .hero{margin-top:8px}
@@ -100,10 +143,12 @@
   <!-- Header -->
   <header>
     <div class="container nav">
-      <a href="#" class="brand">
-        <span class="logo" aria-hidden="true"></span>
-        <span>THE A HOUSE</span>
-      </a>
+    <a href="#" class="brand">
+      <span class="logo" aria-hidden="true">
+        <img src="img/theahouse1.png" alt="THE A HOUSE logo">
+      </span>
+    </a>
+
 
       <nav aria-label="primary">
         <ul>
@@ -232,10 +277,14 @@
   <footer id="contact">
     <div class="container foot">
       <div class="foot-grid">
-        <a href="#" class="brand">
-          <span class="logo"></span>
-          <span style="color:#fff;font-weight:800">THE A HOUSE</span>
-        </a>
+      <a href="#" class="brand">
+        <span class="logo">
+          <img src="img/theahouse1.png" alt="THE A HOUSE logo">
+        </span>
+        <span style="color:#fff;font-weight:800">THE A HOUSE</span>
+      </a>
+
+
 
         <div style="display:grid;gap:10px 28px;grid-template-columns:1fr 1fr">
           <ul>
