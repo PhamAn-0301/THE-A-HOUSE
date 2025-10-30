@@ -7,10 +7,40 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
   <!-- Bootstrap Icons (chỉ dùng icon cho social) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
   <style>
+    
+    @font-face {
+  font-family: 'FC Ethnocentric';
+  src: url('fonts/fonttieude.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+/* Dùng FC Ethnocentric cho các tiêu đề chính */
+h1, h2, h3, h4,
+.panel .hd,          /* VISION, MISSION, SERVICES (ô card xanh) */
+.vtitle,             /* YOUNG, PROFESSIONAL, TRUSTWORTHY */
+.mini-logo,          /* THE A HOUSE ở dải band xanh */
+.band .mini-logo,
+.achv .panel h3,     /* tiêu đề trong Achievements */
+.about-card .logo-row span { /* chữ THE A HOUSE trong hero card */
+  font-family: 'FC Ethnocentric', Poppins, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+}
+
+/* (Tuỳ chọn) Tăng “chất” cho tiêu đề trên nền xanh */
+.panel .hd, .vtitle, .mini-logo {
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0,0,0,.25);
+}
+
+
     :root{
       --navy:#1E2A4A;
       --cream:#FFF7D9;
@@ -20,7 +50,15 @@
       --shadow:0 10px 25px rgba(0,0,0,.08);
     }
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--cream);color:#2b2b2b;font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
+    html,body{
+  margin:0;
+  padding:0;
+  background:var(--cream);
+  color:#2b2b2b;
+  font-family:'Montserrat', Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  line-height:1.7;
+}
+
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
     .container{width:min(1200px,92%);margin-inline:auto}
