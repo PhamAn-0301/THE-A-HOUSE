@@ -1,0 +1,496 @@
+@font-face {
+    font-family: 'FC Ethnocentric';
+    src: url('/fonts/fonttieude.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Dùng FC Ethnocentric cho các tiêu đề chính */
+h1,
+h2,
+h3,
+h4,
+.panel .hd,
+/* VISION, MISSION, SERVICES (ô card xanh) */
+.vtitle,
+/* YOUNG, PROFESSIONAL, TRUSTWORTHY */
+.mini-logo,
+/* THE A HOUSE ở dải band xanh */
+.band .mini-logo,
+.achv .panel h3,
+/* tiêu đề trong Achievements */
+.about-card .logo-row span {
+    /* chữ THE A HOUSE trong hero card */
+    font-family: 'FC Ethnocentric', Poppins, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+}
+
+/* (Tuỳ chọn) Tăng “chất” cho tiêu đề trên nền xanh */
+.panel .hd,
+.vtitle,
+.mini-logo {
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, .25);
+}
+
+:root {
+    --navy: #1E2A4A;
+    --cream: #FFF7D9;
+    --ink: #222;
+    --muted: #6b7280;
+    --radius: 18px;
+    --shadow: 0 10px 25px rgba(0, 0, 0, .08);
+    --footer-logo-h: 200px;
+    /* chiều cao "layout" giữ cho footer không cao hơn */
+    --footer-logo-scale: 1.9;
+}
+
+* {
+    box-sizing: border-box
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--cream);
+    color: #2b2b2b;
+    font-family: 'Montserrat', Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    line-height: 1.7;
+}
+
+a {
+    color: inherit;
+    text-decoration: none
+}
+
+img {
+    max-width: 100%;
+    display: block
+}
+
+.container {
+    width: min(1200px, 92%);
+    margin-inline: auto
+}
+
+/* Header */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: var(--cream);
+    border-bottom: 1px solid rgba(0, 0, 0, .06);
+    backdrop-filter: saturate(140%) blur(4px);
+}
+
+/* Làm header nhỏ gọn hơn */
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 10px 0;
+    height: 70px;
+    position: relative;
+}
+
+/* Logo vẫn to nhưng không đẩy header to theo */
+.brand {
+    position: relative;
+    display: block;
+    width: 180px;
+    height: 80px;
+    overflow: hidden;
+}
+
+/* Logo absolute để canh giữa dọc, nhưng bị cắt bởi .brand */
+.logo {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 180px;
+    width: auto;
+    border: none;
+    border-radius: 0;
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .3s ease;
+}
+
+.logo:hover {
+    transform: translateY(-50%) scale(1.06);
+}
+
+.logo img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Ngăn tràn */
+.nav {
+    overflow: hidden;
+}
+
+header {
+    overflow: hidden;
+}
+
+nav ul {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-weight: 600;
+}
+
+nav a {
+    opacity: .9;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 2px;
+}
+
+nav a:hover {
+    border-color: var(--navy)
+}
+
+.social {
+    display: flex;
+    gap: 12px;
+    font-size: 20px
+}
+
+.social a {
+    display: inline-flex;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: var(--shadow);
+    align-items: center;
+    justify-content: center;
+}
+
+/* Hero */
+.hero .frame {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.hero .frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.hero {
+    margin-top: 0px
+}
+
+.hero .frame {
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: var(--shadow)
+}
+
+.about-card {
+    position: absolute;
+    left: 50%;
+    bottom: -40px;
+    transform: translateX(-50%);
+    width: min(820px, 92%);
+    background: var(--navy);
+    color: #fff;
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+}
+
+.about-card .inner {
+    padding: 36px 40px;
+    text-align: center
+}
+
+.about-card .logo-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.btn-outline {
+    display: inline-block;
+    margin-top: 12px;
+    border: 1.6px solid rgba(255, 255, 255, .65);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-weight: 600;
+}
+
+.spacer {
+    height: 20px
+}
+
+/* Value cards */
+.values {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    margin-top: 20px;
+}
+
+.vcard {
+    border-radius: 16px;
+    padding: 26px;
+    background: #3B4A57;
+    color: #fff;
+    min-height: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.vcard:nth-child(2) {
+    background: #2D3650;
+}
+
+.vcard:nth-child(3) {
+    background: #7A2230;
+}
+
+.vtitle {
+    font-weight: 800;
+    letter-spacing: 1px;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+/* Navy band */
+.band {
+    background: var(--navy);
+    color: #fff;
+    margin: 56px 0;
+    border-radius: 16px;
+    padding: 26px;
+    display: grid;
+    place-items: center;
+}
+
+.band .mini-logo {
+    font-weight: 800;
+    letter-spacing: 1px
+}
+
+/* Split section (image + card) */
+.split {
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 24px;
+    align-items: center;
+}
+
+.panel {
+    background: var(--navy);
+    color: #fff;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+}
+
+.panel .hd {
+    padding: 20px 26px;
+    border-bottom: 1px solid rgba(255, 255, 255, .18);
+    font-weight: 800;
+    letter-spacing: 1.4px;
+}
+
+.panel .bd {
+    padding: 22px 26px;
+    color: #e8ecff
+}
+
+/* Services */
+.services {
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 24px;
+    align-items: center;
+}
+
+.services .panel {
+    order: 2
+}
+
+.services .imgbox {
+    order: 1
+}
+
+/* Achievements */
+.achv .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px
+}
+
+.note {
+    background: #fff;
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: var(--shadow);
+}
+
+/* Footer */
+footer {
+    margin-top: 56px;
+    background: var(--navy);
+    color: #cfd7ff
+}
+
+.foot {
+    padding: 26px 0
+}
+
+.foot-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 26px;
+    align-items: center;
+}
+
+.foot .brand .logo {
+    border-color: #fff;
+    color: #fff
+}
+
+.foot ul {
+    list-style: none;
+    margin: 0;
+    padding: 0
+}
+
+.foot li {
+    margin: 6px 0
+}
+
+.foot .social a {
+    background: rgba(255, 255, 255, .1);
+    color: #fff
+}
+
+.copy {
+    border-top: 1px solid rgba(255, 255, 255, .15);
+    padding: 10px 0;
+    text-align: center;
+    font-size: 14px;
+    color: #aab4ff;
+}
+
+/* Responsive */
+@media (max-width:980px) {
+    .values {
+        grid-template-columns: 1fr
+    }
+
+    .split,
+    .services {
+        grid-template-columns: 1fr
+    }
+
+    .about-card {
+        bottom: -46px
+    }
+
+    .foot-grid {
+        grid-template-columns: 1fr
+    }
+}
+
+/* Header/ Footer logo overrides */
+header .brand {
+    position: relative;
+    display: block;
+    width: 180px;
+    height: 80px;
+    overflow: hidden;
+}
+
+header .logo {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 180px;
+    width: auto;
+}
+
+header .logo img {
+    height: 100%;
+    width: auto;
+}
+
+footer .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+}
+
+footer .brand span {
+    line-height: 1;
+}
+
+.logo-footer {
+    display: inline-flex;
+    align-items: center;
+    height: var(--footer-logo-h);
+    overflow: visible;
+}
+
+.logo-footer img {
+    height: var(--footer-logo-h);
+    width: auto;
+    object-fit: contain;
+    display: block;
+    transform: scale(var(--footer-logo-scale));
+    transform-origin: left center;
+    will-change: transform;
+}
+
+/* Tinh chỉnh logo footer */
+.logo-footer {
+    display: inline-flex;
+    align-items: center;
+    height: auto;
+    overflow: visible;
+    position: relative;
+    left: -6px;
+}
+
+.logo-footer img {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+    transform: scale(1.4);
+    transform-origin: left center;
+    transition: transform .3s ease;
+}
+
+.logo-footer img:hover {
+    transform: scale(1.5);
+}
