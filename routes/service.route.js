@@ -38,19 +38,26 @@ router.get('/', async (req, res, next) => {
 });
 
 /** Chi tiết phòng */
-// router.get('/services/:id(\\d+)', async (req, res, next) => {
-//   try {
-//     const room = await serviceModel.findById(Number(req.params.id));
-//     if (!room) return res.status(404).render('404', { title: 'Không tìm thấy phòng' });
+// routes/service.route.js
+// routes/service.route.js
+router.get('/:id', async (req, res, next) => {
+  const id = Number(req.params.id);
+  if (!Number.isInteger(id)) {
+    return res.status(404).render('404', { title: 'Không tìm thấy phòng' });
+  }
 
-//     res.render('vwService/home', {
-//       title: `${room.room_name} – THE A HOUSE`,
-//       service: room,
-//     });
-//   } catch (err) {
-//     console.error('Service detail error:', err);
-//     next(err);
-//   }
-// });
+  try {
+    const room = await serviceModel.findById(id);
+    if (!room) return res.status(404).render('404', { title: 'Không tìm thấy phòng' });
+
+    res.render('vwService/details', {
+      title: `${room.room_name} – THE A HOUSE`,
+      service: room,
+      gallery: [room.image_url]
+    });
+  } catch (err) { next(err); }
+});
+
+
 
 export default router;
