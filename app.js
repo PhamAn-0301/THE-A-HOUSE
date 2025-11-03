@@ -3,6 +3,7 @@ import { engine } from 'express-handlebars';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import servicesRouter from './routes/service.route.js';
+import db from './utils/db.js';
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
@@ -51,10 +52,33 @@ app.use(express.static(path.join(__dirname, 'public')));
 // ===================================================
 // 🧩 3. Các route
 // ===================================================
-app.get('/', (req, res) => {
-  res.render('home', {
-    title: 'THE A HOUSE – Chạm phong cách, sống trọn khoảnh khắc',
-  });
+app.get('/', async (req, res, next) => {
+  try {
+    // Bỏ qua bot nếu cần
+    const ua = (req.headers['user-agent'] || '').toLowerCase();
+    const isBot = /(bot|crawler|spider|bing|googlebot|facebookexternalhit|slurp)/.test(ua);
+    
+    let total = null;
+    if (!isBot) {
+      // Cập nhật lượt truy cập (UPSERT)
+      const result = await db.raw(`
+        insert into app_counters (key, value)
+        values ('home_total', 1)
+        on conflict (key) do update set value = app_counters.value + 1
+        returning value;
+      `);
+      total = result.rows?.[0]?.value ?? null;
+    }
+
+    // Truyền sang view
+    res.render('home', {
+      title: 'THE A HOUSE – Chạm phong cách, sống trọn khoảnh khắc',
+      homeViews: total,
+    });
+  } catch (err) {
+    console.error('Lỗi đếm lượt truy cập:', err);
+    next(err);
+  }
 });
 
 app.use('/services', servicesRouter);
