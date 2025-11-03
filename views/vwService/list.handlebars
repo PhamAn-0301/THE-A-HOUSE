@@ -49,6 +49,71 @@ Expect: rooms = [
         </article>
         {{/each}}
     </div>
+    {{#if pagination}}
+    <nav class="pager">
+        {{#if pagination.hasPrev}}
+        <a href="{{pagination.prevLink}}" class="page-btn prev">« Trang trước</a>
+        {{else}}
+        <span class="page-btn disabled">« Trang trước</span>
+        {{/if}}
+    
+        <span class="page-indicator">Trang {{pagination.page}} / {{pagination.totalPages}}</span>
+    
+        {{#if pagination.hasNext}}
+        <a href="{{pagination.nextLink}}" class="page-btn next">Trang sau »</a>
+        {{else}}
+        <span class="page-btn disabled">Trang sau »</span>
+        {{/if}}
+    </nav>
+    
+    <style>
+        .pager {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 14px;
+            margin-top: 24px;
+            font-family: 'Poppins', sans-serif;
+        }
+    
+        .page-btn {
+            background: linear-gradient(135deg, #4C8EFF, #2B59C3);
+            color: #fff;
+            padding: 8px 18px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 14px rgba(43, 89, 195, 0.25);
+        }
+    
+        .page-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(43, 89, 195, 0.4);
+            opacity: 0.95;
+        }
+    
+        .page-btn.disabled {
+            background: #e5e7eb;
+            color: #9ca3af;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+    
+        .page-indicator {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--navy);
+        }
+    
+        @media (max-width: 640px) {
+            .pager {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+    {{/if}}
 
     {{else}}
     <p class="text-center" style="margin:18px 0">Chưa có phòng nào.</p>
@@ -179,4 +244,38 @@ Expect: rooms = [
             grid-template-columns: 1fr;
         }
     }
+    .room-grid{
+  align-items: stretch;          /* NEW */
+}
+
+/* 2) Card chiếm 100% chiều cao của ô grid */
+.room-card{
+  height: 100%;                  /* NEW */
+  display: flex;
+  flex-direction: column;
+}
+
+/* 3) Phần body nở ra hết, đẩy actions xuống đáy */
+.room-card .body{
+  flex: 1;                       /* NEW */
+  display: flex;                 /* đảm bảo column */
+  flex-direction: column;
+}
+
+/* 4) Nút luôn dính đáy */
+.room-card .actions{
+  margin-top: auto;              /* NEW -> đẩy xuống đáy */
+  display: flex;
+}
+
+/* (khuyến nghị) Giới hạn 2 dòng tiêu đề để chiều cao đồng đều hơn */
+.room-card .title {
+  display: block;              /* Không cắt dòng */
+  overflow: visible;           /* Cho phép hiển thị toàn bộ text */
+  white-space: normal;         /* Cho phép xuống dòng tự nhiên */
+  line-height: 1.5;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--navy);
+}
 </style>
