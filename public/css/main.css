@@ -494,3 +494,21 @@ footer .brand span {
 .logo-footer img:hover {
     transform: scale(1.5);
 }
+.visit-counter {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #fff;
+    color: #1E2A4A;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-weight: 600;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, .1);
+    font-size: 15px;
+}
+
+.visit-counter .count {
+    color: #2B59C3;
+    font-weight: 800;
+    font-size: 18px;
+}
